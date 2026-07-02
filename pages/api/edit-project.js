@@ -1,41 +1,31 @@
+// pages/api/edit-project.js
 import fs from 'fs';
 import path from 'path';
 
-export default async function handler(req, res) {
-  if (req.method !== 'PUT') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
+export default function handler(req, res) {
+  // 1. Secure Endpoint Verification
+  const adminToken = req.headers['x-admin-token'];
+  if (!adminToken || adminToken !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Unauthorized: Invalid or missing token header.' });
   }
 
-  const { id, title, shortDescription, tech } = req.body;
+  if (req.method === 'POST') {
+    try {
+      const { id, updatedProject } = req.body;
+      const filePath = path.join(process.cwd(), 'data', 'database.json');
+      const fileData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
-  if (!id || !title) {
-    return res.status(400).json({ message: 'Missing required project ID or Title.' });
-  }
+      // Find and map changes
+      fileData.projects = fileData.projects.map((proj) => 
+        proj.id === id ? { ...proj, ...updatedProject } : proj
+      );
 
-  try {
-    const databasePath = path.join(process.cwd(), 'data', 'database.json');
-    const rawData = fs.readFileSync(databasePath, 'utf8');
-    const database = JSON.parse(rawData);
-
-    // Find the project index by ID
-    const projectIndex = database.projects.findIndex(project => project.id === id);
-
-    if (projectIndex === -1) {
-      return res.status(404).json({ message: 'Project not found.' });
+      fs.writeFileSync(filePath, JSON.stringify(fileData, null, 2));
+      return res.status(200).json({ message: 'Project entry securely modified!' });
+    } catch (error) {
+      return res.status(500).json({ error: 'Failed to update project entry inside database.json' });
     }
-
-    // Modular Update: Update only the metadata fields
-    database.projects[projectIndex] = {
-      ...database.projects[projectIndex], // Preserve files structure
-      title,
-      shortDescription,
-      tech: Array.isArray(tech) ? tech : tech.split(',').map(t => t.trim()).filter(t => t.length > 0)
-    };
-
-    fs.writeFileSync(databasePath, JSON.stringify(database, null, 2), 'utf8');
-
-    return res.status(200).json({ message: 'Project updated successfully', project: database.projects[projectIndex] });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
   }
+
+  return res.status(405).json({ error: 'Method not allowed' });
 }

@@ -1,35 +1,29 @@
+// pages/api/delete-project.js
 import fs from 'fs';
 import path from 'path';
 
-export default async function handler(req, res) {
-  if (req.method !== 'DELETE') {
-    return res.status(405).json({ message: 'Method Not Allowed' });
+export default function handler(req, res) {
+  // 1. Secure Endpoint Verification
+  const adminToken = req.headers['x-admin-token'];
+  if (!adminToken || adminToken !== process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Unauthorized: Invalid or missing token header.' });
   }
 
-  const { id } = req.query;
+  if (req.method === 'POST') {
+    try {
+      const { id } = req.body;
+      const filePath = path.join(process.cwd(), 'data', 'database.json');
+      const fileData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
-  if (!id) {
-    return res.status(400).json({ message: 'Missing project ID parameter.' });
-  }
+      // Filter out the selected project item
+      fileData.projects = fileData.projects.filter((proj) => proj.id !== id);
 
-  try {
-    const databasePath = path.join(process.cwd(), 'data', 'database.json');
-    const rawData = fs.readFileSync(databasePath, 'utf8');
-    const database = JSON.parse(rawData);
-
-    // Filter out the project with the target ID
-    const updatedProjects = database.projects.filter(project => project.id !== id);
-
-    // Check if anything was actually removed
-    if (database.projects.length === updatedProjects.length) {
-      return res.status(404).json({ message: 'Project not found.' });
+      fs.writeFileSync(filePath, JSON.stringify(fileData, null, 2));
+      return res.status(200).json({ message: 'Project entry successfully removed!' });
+    } catch (error) {
+      return res.status(500).json({ error: 'Failed to purge project entry from database.json' });
     }
-
-    database.projects = updatedProjects;
-    fs.writeFileSync(databasePath, JSON.stringify(database, null, 2), 'utf8');
-
-    return res.status(200).json({ message: 'Project deleted successfully' });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
   }
+
+  return res.status(405).json({ error: 'Method not allowed' });
 }

@@ -1,3 +1,4 @@
+// components/PortfolioCMS.js
 import React, { useState } from 'react';
 import { Folder, FileCode, Terminal, Layers, User, Phone, Linkedin, Github, Edit, Eye, ChevronRight, ChevronDown, CheckCircle, RefreshCw, Trash2, X, Briefcase, Plus, Save } from 'lucide-react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -25,9 +26,10 @@ const detectLanguage = (fileName) => {
   return map[ext] || 'text';
 };
 
-export default function PortfolioCMS({ initialData }) {
+export default function PortfolioCMS({ initialData, token }) {
   const [data, setData] = useState(initialData);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [activeTab, setActiveTab] = useState('projects');
   const [activeProject, setActiveProject] = useState(null);
   const [expandedNodes, setExpandedNodes] = useState({});
   const [selectedFileCode, setSelectedFileCode] = useState(null);
@@ -67,13 +69,26 @@ export default function PortfolioCMS({ initialData }) {
   const [modalTech, setModalTech] = useState("");
   const [isSavingEdit, setIsSavingEdit] = useState(false);
 
+  // Video Management Mock States (Ready to expand to database array)
+  const [videos, setVideos] = useState([
+    { id: 1, category: "CI/CD Executions", title: "Distributed Parallel Automation Node Cluster Deployment", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", desc: "Detailed visual log breakdown showcasing Kubernetes runtime thread pooling scaling execution layers up dynamically." }
+  ]);
+
+  // Blog Management Mock States (Ready to expand to database array)
+  const [blogs, setBlogs] = useState([
+    { id: 1, category: "QA ARCHITECTURE LOG", date: "JULY 2026", title: "Breaking the Maintenance Debt: Overcoming Element Locator Fatigue", excerpt: "An in-depth exploration of structural semantic analysis layers. Why modern automation engineers are ditching brittle XPath elements in favor of relative DOM geometric proximity markers and self-healing runtime trees..." }
+  ]);
+
   // Global Sync logic pushing memory straight to our backend save handler
   const persistToDatabase = async (updatedData) => {
     setIsSavingAll(true);
     try {
-      const response = await fetch('/pages/api/save-portfolio', {
+      const response = await fetch('/api/save-portfolio', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-admin-token': token 
+        },
         body: JSON.stringify(updatedData)
       });
       if (!response.ok) throw new Error("Failed to overwrite data engine file structures.");
@@ -137,7 +152,10 @@ export default function PortfolioCMS({ initialData }) {
     try {
       const response = await fetch('/api/github-sync', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-admin-token': token
+        },
         body: JSON.stringify({
           repoUrl: gitUrl, projectTitle: gitTitle, projectDescription: gitDesc,
           projectTech: gitTech.split(',').map(t => t.trim()).filter(t => t.length > 0)
@@ -154,7 +172,14 @@ export default function PortfolioCMS({ initialData }) {
   const handleDelete = async (projectId) => {
     if (!confirm("Delete this framework project permanently?")) return;
     try {
-      const response = await fetch(`/api/delete-project?id=${projectId}`, { method: 'DELETE' });
+      const response = await fetch('/api/delete-project', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-admin-token': token
+        },
+        body: JSON.stringify({ id: projectId })
+      });
       if (!response.ok) throw new Error("Deletion failed.");
       setData(prevData => ({ ...prevData, projects: prevData.projects.filter(p => p.id !== projectId) }));
       if (activeProject === projectId) { setActiveProject(null); setSelectedFileCode(null); setSelectedFileName(""); }
@@ -170,13 +195,16 @@ export default function PortfolioCMS({ initialData }) {
     setIsSavingEdit(true);
     try {
       const response = await fetch('/api/edit-project', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editingProject.id, title: modalTitle, shortDescription: modalDesc, tech: modalTech })
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-admin-token': token
+        },
+        body: JSON.stringify({ id: editingProject.id, updatedProject: { title: modalTitle, shortDescription: modalDesc, tech: modalTech.split(',').map(t => t.trim()) } })
       });
       const resData = await response.json();
       if (!response.ok) throw new Error("Update failed.");
-      setData(prevData => ({ ...prevData, projects: prevData.projects.map(p => p.id === editingProject.id ? resData.project : p) }));
+      setData(prevData => ({ ...prevData, projects: prevData.projects.map(p => p.id === editingProject.id ? { ...p, title: modalTitle, shortDescription: modalDesc, tech: modalTech.split(',').map(t => t.trim()) } : p) }));
       setEditingProject(null);
     } catch (err) { alert(err.message); } finally { setIsSavingEdit(false); }
   };
@@ -223,13 +251,13 @@ export default function PortfolioCMS({ initialData }) {
   };
 
   return (
-    <div className="min-h-screen bg-darkBg text-gray-100 font-sans selection:bg-accentNeon selection:text-darkBg">
+    <div className="min-h-screen bg-darkBg text-gray-100 font-sans selection:bg-accentNeon selection:text-darkBg relative overflow-hidden">
       
       {/* Top Navigation */}
       <nav className="sticky top-0 bg-cardBg/80 backdrop-blur-md border-b border-gray-800 z-50 px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2"> <Terminal className="text-accentNeon" /> <span className="font-mono font-bold tracking-wider text-white">QA.AUTOMATION</span> </div>
         <div className="flex items-center gap-4">
-          {isSavingAll && <span className="text-xs font-mono text-gray-500 animate-pulse">Autosaving to laptop...</span>}
+          {isSavingAll && <span className="text-xs font-mono text-gray-500 animate-pulse">Saving parameters...</span>}
           <button onClick={() => setIsAdmin(!isAdmin)} className="flex items-center gap-2 border border-gray-700 bg-darkBg hover:border-accentNeon text-gray-300 hover:text-white px-4 py-2 rounded-lg text-sm transition-all cursor-pointer">
             {isAdmin ? <Eye size={16} /> : <Edit size={16} />} {isAdmin ? "View Live Portfolio" : "Access Admin CMS Control Face"}
           </button>
@@ -238,9 +266,9 @@ export default function PortfolioCMS({ initialData }) {
 
       {/* ================= ADMIN CMS CONTROL FACE ================= */}
       {isAdmin && (
-        <section className="max-w-4xl mx-auto my-8 p-6 bg-cardBg rounded-xl border border-accentNeon/50 shadow-xl space-y-12 animate-fade-in">
+        <section className="max-w-4xl mx-auto my-8 p-6 bg-cardBg rounded-xl border border-accentNeon/50 shadow-xl space-y-12 animate-fade-in relative z-20">
           
-          {/* Section 1: Profile Modifications & Social Core Links */}
+          {/* Section 1: Profile Modifications */}
           <div>
             <div className="flex items-center gap-2 mb-4 border-b border-gray-800 pb-2"> <User size={18} className="text-accentNeon" /> <h2 className="text-lg font-bold text-white">Modify Profile Identity & Contact Connect Links</h2> </div>
             <form onSubmit={handleProfileUpdate} className="space-y-4">
@@ -316,7 +344,7 @@ export default function PortfolioCMS({ initialData }) {
             </form>
           </div>
 
-          {/* Section 5: Repositories Modifiers and Housekeeping */}
+          {/* Section 5: Repositories Modifiers */}
           <div className="border-t border-gray-800 pt-6">
             <div className="flex items-center gap-2 mb-4 border-b border-gray-800 pb-2"> <Terminal size={18} className="text-white" /> <h2 className="text-lg font-bold text-white">Modify & Housekeep Active Framework Repositories</h2> </div>
             <div className="space-y-3">
@@ -356,92 +384,179 @@ export default function PortfolioCMS({ initialData }) {
       )}
 
       {/* ================= PUBLIC PORTFOLIO FACE ================= */}
-      <main className="max-w-6xl mx-auto px-6 py-12 space-y-24">
+      <main className="max-w-6xl mx-auto px-6 py-12 space-y-16 relative z-10 animate-fade-in">
         
-        {/* Profile Identity Block */}
-        <section className="flex flex-col items-start gap-4 py-8 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-cardBg rounded-full border border-gray-800 text-xs text-accentNeon font-mono"> <User size={12} /> Status: Open for Technical Opportunities </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white">{data.profile.name}</h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-400">{data.profile.role}</h2>
-          <p className="text-gray-400 text-lg leading-relaxed">{data.profile.bio}</p>
-          <div className="flex flex-wrap gap-4 pt-4"> 
-            {data.profile.phone && <a href={`tel:${data.profile.phone}`} className="flex items-center gap-2 bg-cardBg hover:bg-gray-800 border border-gray-800 px-4 py-2 rounded-xl text-sm group"><Phone size={16} className="text-accentNeon"/> Contact Me</a>} 
-            {data.profile.linkedin && <a href={data.profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-cardBg hover:bg-gray-800 border border-gray-800 px-4 py-2 rounded-xl text-sm group"><Linkedin size={16} className="text-accentNeon"/> LinkedIn</a>} 
-            {data.profile.github && <a href={data.profile.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-cardBg hover:bg-gray-800 border border-gray-800 px-4 py-2 rounded-xl text-sm group"><Github size={16} className="text-accentNeon"/> GitHub</a>} 
+        {/* Profile Identity Block with Glassmorphic Accent */}
+        <section className="flex flex-col items-start gap-4 py-12 max-w-4xl bg-gradient-to-br from-cardBg/40 via-cardBg/20 to-transparent p-8 rounded-3xl border border-gray-800/60 backdrop-blur-md relative overflow-hidden group hover:border-gray-700/50 transition-all">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-accentNeon/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20 group-hover:bg-accentNeon/10 transition-colors"></div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-darkBg rounded-full border border-gray-800 text-xs text-accentNeon font-mono tracking-wide"> 
+            <span className="w-1.5 h-1.5 rounded-full bg-accentNeon animate-pulse"></span> Status: Open for Technical Opportunities 
+          </div>
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white bg-gradient-to-r from-white via-gray-200 to-gray-500 bg-clip-text text-transparent">{data.profile.name}</h1>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-400 font-mono text-cyan-400/90">{data.profile.role}</h2>
+          <p className="text-gray-400 text-base md:text-lg leading-relaxed max-w-3xl">{data.profile.bio}</p>
+          
+          <div className="flex flex-wrap gap-4 pt-4 w-full border-t border-gray-800/60 mt-4"> 
+            {data.profile.phone && <a href={`tel:${data.profile.phone}`} className="flex items-center gap-2 bg-darkBg hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Phone size={14} className="text-accentNeon group-hover:scale-110 transition-transform"/> Contact Me</a>} 
+            {data.profile.linkedin && <a href={data.profile.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-darkBg hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Linkedin size={14} className="text-accentNeon group-hover:scale-110 transition-transform"/> LinkedIn</a>} 
+            {data.profile.github && <a href={data.profile.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 bg-darkBg hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Github size={14} className="text-accentNeon group-hover:scale-110 transition-transform"/> GitHub</a>} 
+          </div>
+        </section>
+
+        {/* Dynamic Telemetry Metric Strips to Fill Whitespace */}
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="bg-cardBg/40 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
+            <span className="text-xxs font-mono text-accentNeon tracking-widest block mb-1">PARALLEL ACCELERATION</span>
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">4.5x Execution Speedup</span>
+          </div>
+          <div className="bg-cardBg/40 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
+            <span className="text-xxs font-mono text-accentNeon tracking-widest block mb-1">REGRESSION STAGE RELIABILITY</span>
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">99.4% Stability Gate</span>
+          </div>
+          <div className="bg-cardBg/40 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
+            <span className="text-xxs font-mono text-accentNeon tracking-widest block mb-1">E2E TEST CYCLE OPTIMIZATION</span>
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">Zero-Flakiness Layer</span>
           </div>
         </section>
 
         {/* Skill Matrix Framework Display */}
         <section className="space-y-6">
-          <div className="flex items-center gap-2 border-b border-gray-800 pb-2"> <Layers className="text-accentNeon" /> <h3 className="text-2xl font-bold text-white">Skills Matrix & Core Toolkit</h3> </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex items-center gap-2 border-b border-gray-800 pb-2"> <Layers className="text-accentNeon" size={20} /> <h3 className="text-xs font-mono font-bold tracking-widest text-white uppercase">Technical Skills Matrix & Toolkit</h3> </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {data.skills.map((skill, index) => (
-              <div key={index} className="bg-cardBg p-5 rounded-xl border border-gray-800 hover:border-accentNeon/50 transition-all group">
-                <span className="text-xs font-mono px-2 py-1 bg-darkBg rounded border border-gray-800 text-accentNeon">{skill.category}</span>
-                <h4 className="text-lg font-bold text-white mt-3 group-hover:text-accentNeon transition-colors">{skill.name}</h4>
-                <p className="text-gray-400 text-sm mt-1">{skill.description}</p>
+              <div key={index} className="bg-cardBg/30 p-5 rounded-xl border border-gray-800/80 hover:border-accentNeon/40 transition-all group relative">
+                <span className="text-xxs font-mono px-2 py-0.5 bg-darkBg rounded border border-gray-800 text-accentNeon/90">{skill.category}</span>
+                <h4 className="text-base font-bold text-white mt-3 group-hover:text-accentNeon transition-colors">{skill.name}</h4>
+                <p className="text-gray-400 text-xs mt-1 leading-relaxed">{skill.description}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* MASTER INTERACTIVE CONTENT CAPTURE HUB */}
+        <section className="space-y-6">
+          <div className="flex justify-start border-b border-gray-800 font-mono text-xs tracking-wider">
+            <div className="flex space-x-6">
+              <button onClick={() => setActiveTab('projects')} className={`pb-4 font-bold border-b-2 transition-all cursor-pointer ${activeTab === 'projects' ? 'border-accentNeon text-accentNeon' : 'border-transparent text-gray-500 hover:text-gray-300'}`}>
+                📁 AUTOMATION RUNNERS ({data.projects.length})
+              </button>
+              <button onClick={() => setActiveTab('videos')} className={`pb-4 font-bold border-b-2 transition-all cursor-pointer ${activeTab === 'videos' ? 'border-accentNeon text-accentNeon' : 'border-transparent text-gray-500 hover:text-gray-300'}`}>
+                🎥 INFRASTRUCTURE WALKTHROUGHS
+              </button>
+              <button onClick={() => setActiveTab('blogs')} className={`pb-4 font-bold border-b-2 transition-all cursor-pointer ${activeTab === 'blogs' ? 'border-accentNeon text-accentNeon' : 'border-transparent text-gray-500 hover:text-gray-300'}`}>
+                ✍️ ENGINEERING ARCHIVES
+              </button>
+            </div>
+          </div>
+
+          {/* VIEWPORT AREA CONTROLLER */}
+          <div className="pt-2 animate-fade-in">
+            
+            {/* TAB 1: FRAMEWORK TREE RUNNERS */}
+            {activeTab === 'projects' && (
+              <div className="space-y-4">
+                {data.projects.map((project) => (
+                  <div key={project.id} className="bg-cardBg/40 rounded-xl border border-gray-800 overflow-hidden group hover:border-gray-700/60 transition-colors">
+                    <div onClick={() => { setActiveProject(activeProject === project.id ? null : project.id); setSelectedFileCode(null); setSelectedFileName(""); }} className="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 cursor-pointer hover:bg-gray-800/20 transition-all" >
+                      <div className="space-y-2 max-w-4xl"> 
+                        <h4 className="text-lg font-bold text-white group-hover:text-accentNeon transition-colors">{project.title}</h4> 
+                        <p className="text-gray-400 text-xs whitespace-pre-line leading-relaxed">{project.shortDescription}</p>
+                        <div className="flex gap-2 flex-wrap pt-2">
+                          {project.tech.map((t, idx) => ( <span key={idx} className="text-xxs bg-darkBg text-gray-400 font-mono px-2.5 py-0.5 rounded border border-gray-800">{t}</span> ))}
+                        </div>
+                      </div>
+                      <button type="button" className="bg-darkBg text-accentNeon hover:bg-accentNeon hover:text-darkBg px-4 py-2 rounded-lg border border-gray-800 text-xs font-mono font-bold transition-all shadow shrink-0 self-start md:self-center cursor-pointer group-hover:shadow-neon-sm"> {activeProject === project.id ? "Collapse Code Engine" : "Inspect Code Tree"} </button>
+                    </div>
+                    {activeProject === project.id && (
+                      <div className="grid grid-cols-1 md:grid-cols-3 border-t border-gray-800 bg-darkBg/50 min-h-[350px]">
+                        <div className="p-4 border-r border-gray-800 overflow-y-auto max-h-[500px]">
+                          <div className="text-xxs font-mono text-gray-500 uppercase tracking-widest mb-3 font-bold">Package Structure Hierarchy</div>
+                          {renderTree(project.files)}
+                        </div>
+                        <div className="col-span-2 flex flex-col h-full bg-[#0d111c] min-h-[400px]">
+                          <div className="text-xxs font-mono text-gray-500 uppercase tracking-widest p-4 pb-2 border-b border-gray-900 flex justify-between items-center bg-[#0d111c] sticky top-0">
+                            <span>Active File Source View</span> {selectedFileName && <span className="text-accentNeon lowercase font-semibold font-mono">{selectedFileName}</span>}
+                          </div>
+                          <div className="flex-grow font-mono text-xs overflow-auto bg-[#0d111c] shadow-inner">
+                            {selectedFileCode ? (
+                              <SyntaxHighlighter language={detectLanguage(selectedFileName)} style={vscDarkPlus} customStyle={{ background: 'transparent', padding: '1rem', fontSize: '13px', lineHeight: '1.6' }} lineNumberStyle={{color: '#4a5568', paddingRight: '1rem'}} showLineNumbers={true} wrapLongLines={true}>
+                                {selectedFileCode}
+                              </SyntaxHighlighter>
+                            ) : ( <div className="p-6 text-gray-600 italic font-mono text-xs"> // Select any source file class from the project hierarchy tree structure to mount text. </div> )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {data.projects.length === 0 && <p className="text-gray-500 italic text-xs font-mono">// No runtime core frameworks loaded yet.</p>}
+              </div>
+            )}
+
+            {/* TAB 2: VIDEO INSIGHTS GRID */}
+            {activeTab === 'videos' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {videos.map(video => (
+                  <div key={video.id} className="bg-cardBg/40 border border-gray-800 p-5 rounded-2xl space-y-4 hover:border-gray-700 transition-all group">
+                    <div className="aspect-video w-full rounded-xl overflow-hidden bg-black border border-gray-800/80 shadow-2xl relative">
+                      <iframe className="w-full h-full" src={video.url} title={video.title} frameBorder="0" allowFullScreen></iframe>
+                    </div>
+                    <div>
+                      <span className="text-xxs font-mono font-bold text-accentNeon tracking-wider uppercase">[{video.id.toString().padStart(2, '0')}] {video.category}</span>
+                      <h4 className="font-bold text-white text-base mt-1 group-hover:text-accentNeon transition-colors">{video.title}</h4>
+                      <p className="text-gray-400 text-xs mt-1.5 leading-relaxed">{video.desc}</p>
+                    </div>
+                  </div>
+                ))}
+                <div className="bg-cardBg/20 border border-gray-800/40 p-5 rounded-2xl space-y-4 border-dashed flex flex-col items-center justify-center text-center p-8 text-gray-600 font-mono text-xs italic">
+                  <span>// Future workflow demonstration modules can be recorded and mapped straight here</span>
+                </div>
+              </div>
+            )}
+
+            {/* TAB 3: LOG ARCHIVE ENTRIES */}
+            {activeTab === 'blogs' && (
+              <div className="space-y-4 max-w-4xl mx-auto">
+                {blogs.map(blog => (
+                  <article key={blog.id} className="bg-cardBg/20 border border-gray-800/60 p-6 rounded-2xl hover:border-gray-700/80 transition-all group">
+                    <div className="flex items-center justify-between text-xxs font-mono text-gray-500 mb-2">
+                      <span className="text-accentNeon font-bold tracking-widest">[{blog.category}]</span>
+                      <span>{blog.date}</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-white group-hover:text-accentNeon transition-colors cursor-pointer">{blog.title}</h4>
+                    <p className="text-gray-400 text-xs mt-2 leading-relaxed">{blog.excerpt}</p>
+                  </article>
+                ))}
+                <article className="bg-cardBg/10 border border-gray-900/60 p-6 rounded-2xl opacity-40 group select-none">
+                  <div className="flex items-center justify-between text-xxs font-mono text-gray-700 mb-2">
+                    <span>[INFRASTRUCTURE POOLING]</span>
+                    <span>JUNE 2026</span>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-600">Optimizing Chrome Driver Lifecycles Inside Concurrently Isolated Docker Swarm Subnodes</h4>
+                  <p className="text-gray-700 text-xs mt-2 leading-relaxed">Deep analysis showing execution layer socket leaks across continuous multi-threaded runtimes...</p>
+                </article>
+              </div>
+            )}
+
           </div>
         </section>
 
         {/* Experience Timeline Section Expansion */}
         <section className="space-y-6">
-          <div className="flex items-center gap-2 border-b border-gray-800 pb-2"> <Briefcase className="text-accentNeon" /> <h3 className="text-2xl font-bold text-white">Professional Experience History</h3> </div>
-          <div className="space-y-8 relative before:absolute before:inset-0 before:right-auto before:left-3.5 before:w-px before:bg-gray-800">
+          <div className="flex items-center gap-2 border-b border-gray-800 pb-2"> <Briefcase className="text-accentNeon" size={20} /> <h3 className="text-xs font-mono font-bold tracking-widest text-white uppercase">Professional Experience History</h3> </div>
+          <div className="space-y-6 relative before:absolute before:inset-0 before:right-auto before:left-3.5 before:w-px before:bg-gray-800/80">
             {(data.experience || []).map((exp) => (
               <div key={exp.id} className="relative pl-8 group animate-fade-in">
                 <div className="absolute left-2.5 top-2 w-2 h-2 rounded-full bg-accentNeon border border-darkBg ring-4 ring-darkBg group-hover:scale-125 transition-transform" />
-                <div className="bg-cardBg border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition-colors">
-                  <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center gap-1 mb-2">
-                    <h4 className="text-lg font-bold text-white">{exp.role} <span className="text-accentNeon text-base font-normal">@ {exp.company}</span></h4>
-                    <span className="text-xs font-mono bg-darkBg text-gray-400 px-2 py-0.5 rounded border border-gray-800">{exp.duration}</span>
+                <div className="bg-cardBg/30 border border-gray-800 rounded-xl p-5 hover:border-gray-700/80 transition-colors">
+                  <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-1 mb-2">
+                    <h4 className="text-base font-bold text-white">{exp.role} <span className="text-accentNeon font-normal font-mono text-sm">@ {exp.company}</span></h4>
+                    <span className="text-xxs font-mono bg-darkBg text-gray-400 px-2 py-0.5 rounded border border-gray-800">{exp.duration}</span>
                   </div>
-                  <p className="text-gray-400 text-sm whitespace-pre-line leading-relaxed">{exp.description}</p>
+                  <p className="text-gray-400 text-xs whitespace-pre-line leading-relaxed">{exp.description}</p>
                 </div>
               </div>
             ))}
-            {(!data.experience || data.experience.length === 0) && <p className="text-gray-500 italic text-sm">No career records registered yet.</p>}
-          </div>
-        </section>
-
-        {/* Active Project Explorer Drawer Interface */}
-        <section className="space-y-6">
-          <div className="flex items-center gap-2 border-b border-gray-800 pb-2"> <Terminal className="text-accentNeon" /> <h3 className="text-2xl font-bold text-white">QA Automation Framework Architectures</h3> </div>
-          <div className="space-y-4">
-            {data.projects.map((project) => (
-              <div key={project.id} className="bg-cardBg rounded-xl border border-gray-800 overflow-hidden group hover:border-gray-700 transition-colors">
-                <div onClick={() => { setActiveProject(activeProject === project.id ? null : project.id); setSelectedFileCode(null); setSelectedFileName(""); }} className="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 cursor-pointer hover:bg-gray-800/40 transition-all" >
-                  <div className="space-y-2 max-w-4xl"> <h4 className="text-xl font-bold text-white group-hover:text-accentNeon transition-colors">{project.title}</h4> <p className="text-gray-400 text-sm whitespace-pre-line leading-relaxed">{project.shortDescription}</p>
-                    <div className="flex gap-2 flex-wrap pt-2">
-                      {project.tech.map((t, idx) => ( <span key={idx} className="text-xs bg-darkBg text-gray-300 font-mono px-2.5 py-1 rounded-md border border-gray-800">{t}</span> ))}
-                    </div>
-                  </div>
-                  <button type="button" className="bg-darkBg text-accentNeon hover:bg-accentNeon hover:text-darkBg px-4 py-2 rounded-lg border border-gray-800 text-sm font-mono font-semibold transition-all shadow shrink-0 self-start md:self-center cursor-pointer group-hover:shadow-neon-sm"> {activeProject === project.id ? "Collapse Structural Viewer" : "Expand Code Tree Explorer"} </button>
-                </div>
-                {activeProject === project.id && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 border-t border-gray-800 bg-darkBg/50 min-h-[350px]">
-                    <div className="p-4 border-r border-gray-800 overflow-y-auto max-h-[500px]">
-                      <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-3">Project Folder Hierarchy</div>
-                      {renderTree(project.files)}
-                    </div>
-                    <div className="col-span-2 flex flex-col h-full bg-[#0d111c] min-h-[400px]">
-                      <div className="text-xs font-mono text-gray-500 uppercase tracking-wider p-4 pb-2 border-b border-gray-900 flex justify-between items-center bg-[#0d111c] sticky top-0">
-                        <span>Active Source File View</span> {selectedFileName && <span className="text-accentNeon lowercase font-semibold">{selectedFileName}</span>}
-                      </div>
-                      <div className="flex-grow font-mono text-xs overflow-auto bg-[#0d111c] border border-gray-900 shadow-inner">
-                        {selectedFileCode ? (
-                          <SyntaxHighlighter language={detectLanguage(selectedFileName)} style={vscDarkPlus} customStyle={{ background: 'transparent', padding: '1rem', fontSize: '13px', lineHeight: '1.6' }} lineNumberStyle={{color: '#4a5568', paddingRight: '1rem'}} showLineNumbers={true} wrapLongLines={true}>
-                            {selectedFileCode}
-                          </SyntaxHighlighter>
-                        ) : ( <div className="p-4 text-gray-600 italic"> // Click on any file inside the directory hierarchy layout tree to inspect the raw class source code. </div> )}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-            {data.projects.length === 0 && <p className="text-gray-500 italic text-sm">No automation frameworks uploaded yet.</p>}
           </div>
         </section>
       </main>
