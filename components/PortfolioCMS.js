@@ -265,7 +265,7 @@ export default function PortfolioCMS({ initialData, token }) {
       </nav>
 
       {/* ================= ADMIN CMS CONTROL FACE ================= */}
-      {isAdmin && (
+      {forceAdminView && (
         <section className="max-w-4xl mx-auto my-8 p-6 bg-cardBg rounded-xl border border-accentNeon/50 shadow-xl space-y-12 animate-fade-in relative z-20">
           
           {/* Section 1: Profile Modifications */}
