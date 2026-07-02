@@ -10,34 +10,37 @@ export default function Home() {
   const [portfolioData, setPortfolioData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // 1. Fetch live profile parameters from database structure on load
+  // Fetch data on component mount
   useEffect(() => {
-    fetch('/api/get-portfolio') // Ensure this route matches your local JSON read path
-      .then((res) => res.json())
+    // Attempt to pull current JSON layout from database endpoint
+    fetch('/api/get-portfolio')
+      .then((res) => {
+        if (!res.ok) throw new Error("Database offline");
+        return res.json();
+      })
       .then((data) => {
         setPortfolioData(data);
         setIsLoading(false);
       })
       .catch((err) => {
-        console.error("Error loading portfolio data:", err);
-        // Fallback mockup model to prevent component crash if server is booting
+        console.error("Using localized template state values:", err);
+        // Fallback placeholder scheme prevents failure loops
         setPortfolioData({
-          profile: { name: "Salman Raza", role: "Senior QA Ops Architect", bio: "Automating stability at production scale framework layers." },
-          skills: [{ name: "Playwright", category: "UI Automation", description: "Parallel matrix configurations." }],
-          experience: [{ id: "1", role: "Lead QA Engineer", company: "Tech Corp", duration: "2024 - Present", description: "Thread isolation." }],
+          profile: { name: "Salman Raza", role: "Senior QA Automation Architect", bio: "Engineering scalable parallel end-to-end framework layers." },
+          skills: [{ name: "Playwright", category: "UI Automation", description: "Parallel runner matrices." }],
+          experience: [{ id: "1", role: "Lead Engineer", company: "QAOps Core Hub", duration: "2024 - Present", description: "Isolating runtime browser driver threads." }],
           projects: []
         });
         setIsLoading(false);
       });
 
-    // Persistent storage check keeping session open if password variable matches
     const savedToken = localStorage.getItem('admin_secure_session');
     if (savedToken && savedToken === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
       setIsAdmin(true);
     }
   }, []);
 
-  // 2. Secret Terminal Combination Detector (Ctrl + Shift + A)
+  // Keyboard shortcut listener (Ctrl + Shift + A)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'A') {
@@ -54,9 +57,9 @@ export default function Home() {
       setIsAdmin(true);
       setShowAuthModal(false);
       localStorage.setItem('admin_secure_session', passwordInput);
-      alert("Terminal Verified: Admin configuration permissions unlocked.");
+      alert("Terminal Verified: Access Token Unlocked.");
     } else {
-      alert("Access Denied: Invalid credential signature.");
+      alert("Access Denied: Inoperable credential string.");
     }
   };
 
@@ -78,14 +81,13 @@ export default function Home() {
     <div className="bg-[#0B0F19] min-h-screen relative overflow-hidden">
       <Head>
         <title>{portfolioData?.profile?.name || "JimmyOps"} | Automation Portfolio</title>
-        {/* Tailwind CSS Script Loader Injection */}
         <script src="https://cdn.tailwindcss.com"></script>
       </Head>
 
-      {/* GLOBAL AMBIENT LAYER METRIC */}
+      {/* Global Background Depth Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-950/20 via-slate-950 to-black z-0 pointer-events-none"></div>
 
-      {/* TOP FLOATING GATE BAR CONTROLLER */}
+      {/* Embedded Floating Navigation Menu Bar Header */}
       <nav className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-gray-800/80 px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <span className="font-mono font-bold tracking-wider text-white flex items-center gap-1.5">
@@ -105,12 +107,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* RENDER MASTER INTERACTIVE VIEWS */}
-      {/* 
-        We pass the isAdmin status down inside the layout so that PortfolioCMS handles 
-        showing the public dashboard to everyone, but toggles the editor form sections 
-        on and off dynamically depending on authorization status!
-      */}
+      {/* Render Master Portfolio Surface Layer Elements */}
       <div className="relative z-10">
         <PortfolioCMS 
           initialData={portfolioData} 
@@ -119,7 +116,7 @@ export default function Home() {
         />
       </div>
 
-      {/* HIDDEN MODAL TERMINAL GATING PROMPT */}
+      {/* Hidden Terminal Authentication Modal Overlay Prompt */}
       {showAuthModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl w-full max-w-sm space-y-4 shadow-2xl animate-fade-in">
