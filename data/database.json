@@ -1,17 +1,59 @@
 {
   "profile": {
-    "name": "Your Name",
+    "name": "Salman Raza",
     "role": "Software Testing & QA Automation Engineer",
     "bio": "Specializing in designing robust, scalable automation frameworks and ensuring enterprise system reliability across web, mobile, and API layers.",
-    "phone": "+91 XXXXXXXXXX",
-    "linkedin": "https://linkedin.com",
-    "github": "https://github.com"
+    "phone": "+91 9773782031",
+    "linkedin": "https://www.linkedin.com/in/-salmanraza/",
+    "github": "https://github.com/salmanraza9773",
+    "resumeUrl": ""
   },
+  "metrics": [
+    {
+      "id": "metric-1",
+      "label": "PARALLEL ACCELERATION",
+      "value": "4.5x Execution Speedup"
+    },
+    {
+      "id": "metric-2",
+      "label": "REGRESSION STAGE RELIABILITY",
+      "value": "99.4% Stability Gate"
+    },
+    {
+      "id": "metric-3",
+      "label": "E2E TEST CYCLE OPTIMIZATION",
+      "value": "Zero-Flakiness Layer"
+    }
+  ],
+  "videos": [
+    {
+      "id": "video-1",
+      "category": "CI/CD Executions",
+      "title": "Distributed Parallel Automation Node Cluster Deployment",
+      "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "desc": "Detailed visual log breakdown showcasing Kubernetes runtime thread pooling scaling execution layers up dynamically."
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-1",
+      "category": "QA ARCHITECTURE LOG",
+      "date": "JULY 2026",
+      "title": "Breaking the Maintenance Debt: Overcoming Element Locator Fatigue",
+      "excerpt": "An in-depth exploration of structural semantic analysis layers. Why modern automation engineers are ditching brittle XPath elements in favor of relative DOM geometric proximity markers and self-healing runtime trees...",
+      "content": "An in-depth exploration of structural semantic analysis layers. Why modern automation engineers are ditching brittle XPath elements in favor of relative DOM geometric proximity markers and self-healing runtime trees.\n\n### The Problem with XPaths\nBrittle selectors are the bane of QA automation. Whenever the html layout or DOM tree updates under normal frontend code iterations, paths break causing downstream test flakiness.\n\n### Modern Solutions\n1. **Geometric Proximity Markers**: Targeting locators based on layout position.\n2. **Self-Healing Runtime Trees**: Dynamic fallback selectors when static ones fail.\n3. **AI-Driven Visual Analysis**: Locating elements using image models rather than code nodes.\n\nUsing modern framework wrappers like Playwright, we can target locator elements semantically rather than structurally."
+    }
+  ],
   "skills": [
     {
       "name": "Selenium WebDriver",
       "category": "UI Automation",
       "description": "Designed custom cross-browser, thread-safe execution engines with explicit wait wrappers."
+    },
+    {
+      "name": "Playwright",
+      "category": "UI Automation",
+      "description": "Built parallel testing framework"
     }
   ],
   "experience": [
@@ -21,6 +63,13 @@
       "company": "Tech Enterprise Corp",
       "duration": "2024 - Present",
       "description": "Led a team of 4 engineers to scale cross-browser test automation coverage from 40% to 92% utilizing Playwright.\nBuilt and optimized overnight CI/CD pipeline triggers within Jenkins."
+    },
+    {
+      "id": "exp-1784209660210",
+      "role": "software test engineer",
+      "company": "Telus Digital",
+      "duration": "2022 - July 2026",
+      "description": "Hi testing"
     }
   ],
   "projects": [
@@ -35,6 +84,670 @@
         "TestNg",
         "Jenkins",
         "Docker"
+      ],
+      "files": {
+        "README.md": {
+          "isCloudFile": true,
+          "fileName": "README.md",
+          "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/README.md"
+        },
+        "TestNGProjectDevOps": {
+          ".classpath": {
+            "isCloudFile": true,
+            "fileName": ".classpath",
+            "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/.classpath"
+          },
+          ".project": {
+            "isCloudFile": true,
+            "fileName": ".project",
+            "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/.project"
+          },
+          ".settings": {
+            "org.eclipse.core.resources.prefs": {
+              "isCloudFile": true,
+              "fileName": "org.eclipse.core.resources.prefs",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/.settings/org.eclipse.core.resources.prefs"
+            },
+            "org.eclipse.jdt.core.prefs": {
+              "isCloudFile": true,
+              "fileName": "org.eclipse.jdt.core.prefs",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/.settings/org.eclipse.jdt.core.prefs"
+            },
+            "org.eclipse.m2e.core.prefs": {
+              "isCloudFile": true,
+              "fileName": "org.eclipse.m2e.core.prefs",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/.settings/org.eclipse.m2e.core.prefs"
+            }
+          },
+          "Drivers": {
+            "chromedriver.exe": {
+              "isCloudFile": true,
+              "fileName": "chromedriver.exe",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/Drivers/chromedriver.exe"
+            }
+          },
+          "pom.xml": {
+            "isCloudFile": true,
+            "fileName": "pom.xml",
+            "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/pom.xml"
+          },
+          "src": {
+            "main": {
+              "java": {
+                "seleniumautomation": {
+                  "TestNGProject": {
+                    "App.java": {
+                      "isCloudFile": true,
+                      "fileName": "App.java",
+                      "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/src/main/java/seleniumautomation/TestNGProject/App.java"
+                    }
+                  }
+                }
+              }
+            },
+            "test": {
+              "java": {
+                "com": {
+                  "telus": {
+                    "testng": {
+                      "RegistrationDemoEndToEnd.java": {
+                        "isCloudFile": true,
+                        "fileName": "RegistrationDemoEndToEnd.java",
+                        "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/src/test/java/com/telus/testng/RegistrationDemoEndToEnd.java"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "target": {
+            "TestNGProject-0.0.1-SNAPSHOT.jar": {
+              "isCloudFile": true,
+              "fileName": "TestNGProject-0.0.1-SNAPSHOT.jar",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/TestNGProject-0.0.1-SNAPSHOT.jar"
+            },
+            "classes": {
+              ".gitignore": {
+                "isCloudFile": true,
+                "fileName": ".gitignore",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/classes/.gitignore"
+              }
+            },
+            "maven-archiver": {
+              "pom.properties": {
+                "isCloudFile": true,
+                "fileName": "pom.properties",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/maven-archiver/pom.properties"
+              }
+            },
+            "maven-status": {
+              "maven-compiler-plugin": {
+                "compile": {
+                  "default-compile": {
+                    "createdFiles.lst": {
+                      "isCloudFile": true,
+                      "fileName": "createdFiles.lst",
+                      "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst"
+                    },
+                    "inputFiles.lst": {
+                      "isCloudFile": true,
+                      "fileName": "inputFiles.lst",
+                      "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst"
+                    }
+                  }
+                },
+                "testCompile": {
+                  "default-testCompile": {
+                    "createdFiles.lst": {
+                      "isCloudFile": true,
+                      "fileName": "createdFiles.lst",
+                      "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst"
+                    },
+                    "inputFiles.lst": {
+                      "isCloudFile": true,
+                      "fileName": "inputFiles.lst",
+                      "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst"
+                    }
+                  }
+                }
+              }
+            },
+            "surefire-reports": {
+              "Automation Suite": {
+                "RegistrationDemoEndToEndTest.html": {
+                  "isCloudFile": true,
+                  "fileName": "RegistrationDemoEndToEndTest.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/Automation Suite/RegistrationDemoEndToEndTest.html"
+                },
+                "RegistrationDemoEndToEndTest.xml": {
+                  "isCloudFile": true,
+                  "fileName": "RegistrationDemoEndToEndTest.xml",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/Automation Suite/RegistrationDemoEndToEndTest.xml"
+                }
+              },
+              "TEST-TestSuite.xml": {
+                "isCloudFile": true,
+                "fileName": "TEST-TestSuite.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/TEST-TestSuite.xml"
+              },
+              "TestSuite.txt": {
+                "isCloudFile": true,
+                "fileName": "TestSuite.txt",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/TestSuite.txt"
+              },
+              "bullet_point.png": {
+                "isCloudFile": true,
+                "fileName": "bullet_point.png",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/bullet_point.png"
+              },
+              "collapseall.gif": {
+                "isCloudFile": true,
+                "fileName": "collapseall.gif",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/collapseall.gif"
+              },
+              "emailable-report.html": {
+                "isCloudFile": true,
+                "fileName": "emailable-report.html",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/emailable-report.html"
+              },
+              "failed.png": {
+                "isCloudFile": true,
+                "fileName": "failed.png",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/failed.png"
+              },
+              "index.html": {
+                "isCloudFile": true,
+                "fileName": "index.html",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/index.html"
+              },
+              "jquery-3.6.0.min.js": {
+                "isCloudFile": true,
+                "fileName": "jquery-3.6.0.min.js",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/jquery-3.6.0.min.js"
+              },
+              "junitreports": {
+                "TEST-com.telus.testng.RegistrationDemoEndToEnd.xml": {
+                  "isCloudFile": true,
+                  "fileName": "TEST-com.telus.testng.RegistrationDemoEndToEnd.xml",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/junitreports/TEST-com.telus.testng.RegistrationDemoEndToEnd.xml"
+                }
+              },
+              "navigator-bullet.png": {
+                "isCloudFile": true,
+                "fileName": "navigator-bullet.png",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/navigator-bullet.png"
+              },
+              "old": {
+                "Automation Suite": {
+                  "RegistrationDemoEndToEndTest.properties": {
+                    "isCloudFile": true,
+                    "fileName": "RegistrationDemoEndToEndTest.properties",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/RegistrationDemoEndToEndTest.properties"
+                  },
+                  "classes.html": {
+                    "isCloudFile": true,
+                    "fileName": "classes.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/classes.html"
+                  },
+                  "groups.html": {
+                    "isCloudFile": true,
+                    "fileName": "groups.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/groups.html"
+                  },
+                  "index.html": {
+                    "isCloudFile": true,
+                    "fileName": "index.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/index.html"
+                  },
+                  "main.html": {
+                    "isCloudFile": true,
+                    "fileName": "main.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/main.html"
+                  },
+                  "methods-alphabetical.html": {
+                    "isCloudFile": true,
+                    "fileName": "methods-alphabetical.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/methods-alphabetical.html"
+                  },
+                  "methods-not-run.html": {
+                    "isCloudFile": true,
+                    "fileName": "methods-not-run.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/methods-not-run.html"
+                  },
+                  "methods.html": {
+                    "isCloudFile": true,
+                    "fileName": "methods.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/methods.html"
+                  },
+                  "reporter-output.html": {
+                    "isCloudFile": true,
+                    "fileName": "reporter-output.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/reporter-output.html"
+                  },
+                  "testng.xml.html": {
+                    "isCloudFile": true,
+                    "fileName": "testng.xml.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/testng.xml.html"
+                  },
+                  "toc.html": {
+                    "isCloudFile": true,
+                    "fileName": "toc.html",
+                    "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/Automation Suite/toc.html"
+                  }
+                },
+                "index.html": {
+                  "isCloudFile": true,
+                  "fileName": "index.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/old/index.html"
+                }
+              },
+              "passed.png": {
+                "isCloudFile": true,
+                "fileName": "passed.png",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/passed.png"
+              },
+              "skipped.png": {
+                "isCloudFile": true,
+                "fileName": "skipped.png",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/skipped.png"
+              },
+              "testng-reports.css": {
+                "isCloudFile": true,
+                "fileName": "testng-reports.css",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/testng-reports.css"
+              },
+              "testng-reports.js": {
+                "isCloudFile": true,
+                "fileName": "testng-reports.js",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/testng-reports.js"
+              },
+              "testng-reports1.css": {
+                "isCloudFile": true,
+                "fileName": "testng-reports1.css",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/testng-reports1.css"
+              },
+              "testng-reports2.js": {
+                "isCloudFile": true,
+                "fileName": "testng-reports2.js",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/testng-reports2.js"
+              },
+              "testng-results.xml": {
+                "isCloudFile": true,
+                "fileName": "testng-results.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/testng-results.xml"
+              },
+              "testng.css": {
+                "isCloudFile": true,
+                "fileName": "testng.css",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/surefire-reports/testng.css"
+              }
+            },
+            "test-classes": {
+              ".gitignore": {
+                "isCloudFile": true,
+                "fileName": ".gitignore",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/target/test-classes/.gitignore"
+              }
+            }
+          },
+          "test-output": {
+            "Automation Suite": {
+              "RegistrationDemoEndToEndTest.html": {
+                "isCloudFile": true,
+                "fileName": "RegistrationDemoEndToEndTest.html",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Automation Suite/RegistrationDemoEndToEndTest.html"
+              },
+              "RegistrationDemoEndToEndTest.xml": {
+                "isCloudFile": true,
+                "fileName": "RegistrationDemoEndToEndTest.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Automation Suite/RegistrationDemoEndToEndTest.xml"
+              },
+              "testng-failed.xml": {
+                "isCloudFile": true,
+                "fileName": "testng-failed.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Automation Suite/testng-failed.xml"
+              }
+            },
+            "Default suite": {
+              "Default test.html": {
+                "isCloudFile": true,
+                "fileName": "Default test.html",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Default suite/Default test.html"
+              },
+              "Default test.xml": {
+                "isCloudFile": true,
+                "fileName": "Default test.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Default suite/Default test.xml"
+              },
+              "testng-failed.xml": {
+                "isCloudFile": true,
+                "fileName": "testng-failed.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Default suite/testng-failed.xml"
+              }
+            },
+            "Suite": {
+              "Test.html": {
+                "isCloudFile": true,
+                "fileName": "Test.html",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Suite/Test.html"
+              },
+              "Test.xml": {
+                "isCloudFile": true,
+                "fileName": "Test.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Suite/Test.xml"
+              },
+              "testng-failed.xml": {
+                "isCloudFile": true,
+                "fileName": "testng-failed.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/Suite/testng-failed.xml"
+              }
+            },
+            "bullet_point.png": {
+              "isCloudFile": true,
+              "fileName": "bullet_point.png",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/bullet_point.png"
+            },
+            "collapseall.gif": {
+              "isCloudFile": true,
+              "fileName": "collapseall.gif",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/collapseall.gif"
+            },
+            "emailable-report.html": {
+              "isCloudFile": true,
+              "fileName": "emailable-report.html",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/emailable-report.html"
+            },
+            "failed.png": {
+              "isCloudFile": true,
+              "fileName": "failed.png",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/failed.png"
+            },
+            "index.html": {
+              "isCloudFile": true,
+              "fileName": "index.html",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/index.html"
+            },
+            "jquery-3.6.0.min.js": {
+              "isCloudFile": true,
+              "fileName": "jquery-3.6.0.min.js",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/jquery-3.6.0.min.js"
+            },
+            "junitreports": {
+              "TEST-com.telus.navigation.BeforeAndAfterClass.xml": {
+                "isCloudFile": true,
+                "fileName": "TEST-com.telus.navigation.BeforeAndAfterClass.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/junitreports/TEST-com.telus.navigation.BeforeAndAfterClass.xml"
+              },
+              "TEST-com.telus.navigation.BeforeAndAfterMethod.xml": {
+                "isCloudFile": true,
+                "fileName": "TEST-com.telus.navigation.BeforeAndAfterMethod.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/junitreports/TEST-com.telus.navigation.BeforeAndAfterMethod.xml"
+              },
+              "TEST-com.telus.navigation_method_class.NavigationClassAnnotation.xml": {
+                "isCloudFile": true,
+                "fileName": "TEST-com.telus.navigation_method_class.NavigationClassAnnotation.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/junitreports/TEST-com.telus.navigation_method_class.NavigationClassAnnotation.xml"
+              },
+              "TEST-com.telus.testng.RegDemo_EndToEnd.xml": {
+                "isCloudFile": true,
+                "fileName": "TEST-com.telus.testng.RegDemo_EndToEnd.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/junitreports/TEST-com.telus.testng.RegDemo_EndToEnd.xml"
+              },
+              "TEST-com.telus.testng.RegistrationDemoEndToEnd.xml": {
+                "isCloudFile": true,
+                "fileName": "TEST-com.telus.testng.RegistrationDemoEndToEnd.xml",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/junitreports/TEST-com.telus.testng.RegistrationDemoEndToEnd.xml"
+              }
+            },
+            "navigator-bullet.png": {
+              "isCloudFile": true,
+              "fileName": "navigator-bullet.png",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/navigator-bullet.png"
+            },
+            "old": {
+              "Automation Suite": {
+                "RegistrationDemoEndToEndTest.properties": {
+                  "isCloudFile": true,
+                  "fileName": "RegistrationDemoEndToEndTest.properties",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/RegistrationDemoEndToEndTest.properties"
+                },
+                "classes.html": {
+                  "isCloudFile": true,
+                  "fileName": "classes.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/classes.html"
+                },
+                "groups.html": {
+                  "isCloudFile": true,
+                  "fileName": "groups.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/groups.html"
+                },
+                "index.html": {
+                  "isCloudFile": true,
+                  "fileName": "index.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/index.html"
+                },
+                "main.html": {
+                  "isCloudFile": true,
+                  "fileName": "main.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/main.html"
+                },
+                "methods-alphabetical.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods-alphabetical.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/methods-alphabetical.html"
+                },
+                "methods-not-run.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods-not-run.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/methods-not-run.html"
+                },
+                "methods.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/methods.html"
+                },
+                "reporter-output.html": {
+                  "isCloudFile": true,
+                  "fileName": "reporter-output.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/reporter-output.html"
+                },
+                "testng.xml.html": {
+                  "isCloudFile": true,
+                  "fileName": "testng.xml.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/testng.xml.html"
+                },
+                "toc.html": {
+                  "isCloudFile": true,
+                  "fileName": "toc.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Automation Suite/toc.html"
+                }
+              },
+              "Default suite": {
+                "Default test.properties": {
+                  "isCloudFile": true,
+                  "fileName": "Default test.properties",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/Default test.properties"
+                },
+                "classes.html": {
+                  "isCloudFile": true,
+                  "fileName": "classes.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/classes.html"
+                },
+                "groups.html": {
+                  "isCloudFile": true,
+                  "fileName": "groups.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/groups.html"
+                },
+                "index.html": {
+                  "isCloudFile": true,
+                  "fileName": "index.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/index.html"
+                },
+                "main.html": {
+                  "isCloudFile": true,
+                  "fileName": "main.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/main.html"
+                },
+                "methods-alphabetical.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods-alphabetical.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/methods-alphabetical.html"
+                },
+                "methods-not-run.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods-not-run.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/methods-not-run.html"
+                },
+                "methods.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/methods.html"
+                },
+                "reporter-output.html": {
+                  "isCloudFile": true,
+                  "fileName": "reporter-output.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/reporter-output.html"
+                },
+                "testng.xml.html": {
+                  "isCloudFile": true,
+                  "fileName": "testng.xml.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/testng.xml.html"
+                },
+                "toc.html": {
+                  "isCloudFile": true,
+                  "fileName": "toc.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Default suite/toc.html"
+                }
+              },
+              "Suite": {
+                "Test.properties": {
+                  "isCloudFile": true,
+                  "fileName": "Test.properties",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/Test.properties"
+                },
+                "classes.html": {
+                  "isCloudFile": true,
+                  "fileName": "classes.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/classes.html"
+                },
+                "groups.html": {
+                  "isCloudFile": true,
+                  "fileName": "groups.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/groups.html"
+                },
+                "index.html": {
+                  "isCloudFile": true,
+                  "fileName": "index.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/index.html"
+                },
+                "main.html": {
+                  "isCloudFile": true,
+                  "fileName": "main.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/main.html"
+                },
+                "methods-alphabetical.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods-alphabetical.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/methods-alphabetical.html"
+                },
+                "methods-not-run.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods-not-run.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/methods-not-run.html"
+                },
+                "methods.html": {
+                  "isCloudFile": true,
+                  "fileName": "methods.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/methods.html"
+                },
+                "reporter-output.html": {
+                  "isCloudFile": true,
+                  "fileName": "reporter-output.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/reporter-output.html"
+                },
+                "testng.xml.html": {
+                  "isCloudFile": true,
+                  "fileName": "testng.xml.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/testng.xml.html"
+                },
+                "toc.html": {
+                  "isCloudFile": true,
+                  "fileName": "toc.html",
+                  "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/Suite/toc.html"
+                }
+              },
+              "index.html": {
+                "isCloudFile": true,
+                "fileName": "index.html",
+                "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/old/index.html"
+              }
+            },
+            "passed.png": {
+              "isCloudFile": true,
+              "fileName": "passed.png",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/passed.png"
+            },
+            "skipped.png": {
+              "isCloudFile": true,
+              "fileName": "skipped.png",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/skipped.png"
+            },
+            "testng-failed.xml": {
+              "isCloudFile": true,
+              "fileName": "testng-failed.xml",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/testng-failed.xml"
+            },
+            "testng-reports.css": {
+              "isCloudFile": true,
+              "fileName": "testng-reports.css",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/testng-reports.css"
+            },
+            "testng-reports.js": {
+              "isCloudFile": true,
+              "fileName": "testng-reports.js",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/testng-reports.js"
+            },
+            "testng-reports1.css": {
+              "isCloudFile": true,
+              "fileName": "testng-reports1.css",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/testng-reports1.css"
+            },
+            "testng-reports2.js": {
+              "isCloudFile": true,
+              "fileName": "testng-reports2.js",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/testng-reports2.js"
+            },
+            "testng-results.xml": {
+              "isCloudFile": true,
+              "fileName": "testng-results.xml",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/testng-results.xml"
+            },
+            "testng.css": {
+              "isCloudFile": true,
+              "fileName": "testng.css",
+              "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/test-output/testng.css"
+            }
+          },
+          "testng.xml": {
+            "isCloudFile": true,
+            "fileName": "testng.xml",
+            "rawUrl": "https://raw.githubusercontent.com/salmanraza9773/Maven-project-NextGenAIEndToEnd_DevOps/main/TestNGProjectDevOps/testng.xml"
+          }
+        }
+      }
+    },
+    {
+      "id": "github-1784209751543",
+      "title": "NextGenAI End To End Maven Framework",
+      "shortDescription": "Hi testing",
+      "tech": [
+        "Java",
+        "TestNG",
+        "Selenium",
+        "Maven",
+        "Github",
+        "Jenkins"
       ],
       "files": {
         "README.md": {

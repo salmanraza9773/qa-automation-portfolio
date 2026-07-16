@@ -26,10 +26,21 @@ export default function Home() {
         console.error("Using localized template state values:", err);
         // Fallback placeholder scheme prevents failure loops
         setPortfolioData({
-          profile: { name: "Salman Raza", role: "Senior QA Automation Architect", bio: "Engineering scalable parallel end-to-end framework layers." },
+          profile: { name: "Salman Raza", role: "Senior QA Automation Architect", bio: "Engineering scalable parallel end-to-end framework layers.", resumeUrl: "" },
           skills: [{ name: "Playwright", category: "UI Automation", description: "Parallel runner matrices." }],
           experience: [{ id: "1", role: "Lead Engineer", company: "QAOps Core Hub", duration: "2024 - Present", description: "Isolating runtime browser driver threads." }],
-          projects: []
+          projects: [],
+          metrics: [
+            { id: "metric-1", label: "PARALLEL ACCELERATION", value: "4.5x Execution Speedup" },
+            { id: "metric-2", label: "REGRESSION STAGE RELIABILITY", value: "99.4% Stability Gate" },
+            { id: "metric-3", label: "E2E TEST CYCLE OPTIMIZATION", value: "Zero-Flakiness Layer" }
+          ],
+          videos: [
+            { id: "video-1", category: "CI/CD Executions", title: "Distributed Parallel Automation Node Cluster Deployment", url: "https://www.youtube.com/embed/dQw4w9WgXcQ", desc: "Detailed visual log breakdown showcasing Kubernetes runtime thread pooling scaling execution layers up dynamically." }
+          ],
+          blogs: [
+            { id: "blog-1", category: "QA ARCHITECTURE LOG", date: "JULY 2026", title: "Breaking the Maintenance Debt: Overcoming Element Locator Fatigue", excerpt: "An in-depth exploration of structural semantic analysis layers. Why modern automation engineers are ditching brittle XPath elements in favor of relative DOM geometric proximity markers and self-healing runtime trees...", content: "Full text content." }
+          ]
         });
         setIsLoading(false);
       });
