@@ -5,25 +5,43 @@ import path from 'path';
 export default async function handler(req, res) {
   const filePath = path.join(process.cwd(), 'data', 'analytics.json');
 
-  // Initialize analytics file if missing
+  // Ensure default metrics schema exists
+  const defaultData = {
+    pageViews: 0,
+    projectClicks: 0,
+    videoViews: 0,
+    blogViews: 0,
+    contactClicks: 0
+  };
+
   if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify({ pageViews: 0, resumeDownloads: 0, projectClicks: 0 }));
+    try {
+      fs.writeFileSync(filePath, JSON.stringify(defaultData, null, 2));
+    } catch (e) {}
   }
 
   if (req.method === 'GET') {
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    return res.status(200).json(data);
+    try {
+      const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+      return res.status(200).json({ ...defaultData, ...data });
+    } catch (err) {
+      return res.status(200).json(defaultData);
+    }
   }
 
   if (req.method === 'POST') {
     const { eventType } = req.body;
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    let data = { ...defaultData };
+    try {
+      data = { ...data, ...JSON.parse(fs.readFileSync(filePath, 'utf8')) };
+    } catch (e) {}
 
     if (eventType === 'pageView') data.pageViews = (data.pageViews || 0) + 1;
-    if (eventType === 'resumeDownload') data.resumeDownloads = (data.resumeDownloads || 0) + 1;
     if (eventType === 'projectClick') data.projectClicks = (data.projectClicks || 0) + 1;
+    if (eventType === 'videoView') data.videoViews = (data.videoViews || 0) + 1;
+    if (eventType === 'blogView') data.blogViews = (data.blogViews || 0) + 1;
+    if (eventType === 'contactClick') data.contactClicks = (data.contactClicks || 0) + 1;
 
-    // Direct write for local, falls back to memory on serverless
     try {
       fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
     } catch (err) {

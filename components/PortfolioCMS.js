@@ -1,6 +1,6 @@
 // components/PortfolioCMS.js
 import React, { useState, useEffect, useRef } from 'react';
-import { Folder, FileCode, Terminal, Layers, User, Phone, Linkedin, Github, Edit, Eye, ChevronRight, ChevronDown, CheckCircle, RefreshCw, Trash2, X, Briefcase, Plus, Save, Video, BookOpen, BarChart3, Activity } from 'lucide-react';
+import { Folder, FileCode, Terminal, Layers, User, Phone, Linkedin, Github, Edit, Eye, ChevronRight, ChevronDown, CheckCircle, RefreshCw, Trash2, X, Briefcase, Plus, Save, Video, BookOpen, BarChart3, Activity, MousePointer, Eye as EyeIcon, Share2 } from 'lucide-react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import javaScript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java';
@@ -26,8 +26,8 @@ const detectLanguage = (fileName) => {
   return map[ext] || 'text';
 };
 
-// Animated QA Cyber Floating Background Component
-const QABackgroundCanvas = () => {
+// 🎨 Bold & Vibrant 3D Floating QA Background Canvas Component
+const Vibrant3DBackgroundCanvas = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -39,20 +39,31 @@ const QABackgroundCanvas = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const keywords = [
-      'QA AUTOMATION', 'PLAYWRIGHT', 'SELENIUM', 'AI IN TESTING', 
-      'PARALLEL EXECUTION', 'CUCUMBER BDD', 'REST ASSURED', 
-      'CI/CD PIPELINE', 'ZERO-FLAKE', 'SELF-HEALING'
+    const qaKeywords = [
+      { text: 'PLAYWRIGHT', color: '#00F0FF', shadow: '#0088FF' },
+      { text: 'SELENIUM', color: '#FF007F', shadow: '#99004C' },
+      { text: 'AI IN TESTING', color: '#39FF14', shadow: '#009900' },
+      { text: 'QA AUTOMATION', color: '#FFD700', shadow: '#CC9900' },
+      { text: 'CUCUMBER BDD', color: '#00FFCC', shadow: '#009999' },
+      { text: 'REST ASSURED', color: '#BF00FF', shadow: '#660099' },
+      { text: 'CI/CD PIPELINE', color: '#FF5722', shadow: '#BF360C' },
+      { text: 'SELF-HEALING', color: '#FF0055', shadow: '#88002D' }
     ];
 
-    const particles = Array.from({ length: 22 }, () => ({
-      text: keywords[Math.floor(Math.random() * keywords.length)],
-      x: Math.random() * width,
-      y: Math.random() * height,
-      speedY: 0.2 + Math.random() * 0.4,
-      opacity: 0.05 + Math.random() * 0.12,
-      size: 10 + Math.random() * 4
-    }));
+    const particles = Array.from({ length: 18 }, () => {
+      const kw = qaKeywords[Math.floor(Math.random() * qaKeywords.length)];
+      return {
+        text: kw.text,
+        color: kw.color,
+        shadow: kw.shadow,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        speedY: 0.3 + Math.random() * 0.5,
+        speedX: (Math.random() - 0.5) * 0.3,
+        scale: 0.8 + Math.random() * 0.6,
+        fontSize: Math.floor(22 + Math.random() * 16)
+      };
+    });
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
@@ -62,14 +73,33 @@ const QABackgroundCanvas = () => {
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.font = '11px monospace';
 
       particles.forEach((p) => {
-        ctx.fillStyle = `rgba(34, 211, 238, ${p.opacity})`;
+        ctx.save();
+        ctx.font = `900 ${Math.floor(p.fontSize * p.scale)}px "Fira Code", "Courier New", monospace`;
+        
+        // 3D Extrusion Shadow Depth Layers
+        const depth = 5;
+        for (let i = depth; i > 0; i--) {
+          ctx.fillStyle = p.shadow;
+          ctx.fillText(p.text, p.x + i, p.y + i);
+        }
+
+        // Foreground Bright Face Text
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 15;
         ctx.fillText(p.text, p.x, p.y);
+        ctx.restore();
+
         p.y -= p.speedY;
-        if (p.y < -20) {
-          p.y = height + 20;
+        p.x += p.speedX;
+
+        if (p.y < -50) {
+          p.y = height + 50;
+          p.x = Math.random() * width;
+        }
+        if (p.x < -100 || p.x > width + 100) {
           p.x = Math.random() * width;
         }
       });
@@ -85,7 +115,7 @@ const QABackgroundCanvas = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-80" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-40" />;
 };
 
 export default function PortfolioCMS({ initialData, token, forceAdminView }) {
@@ -97,8 +127,8 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
   const [selectedFileName, setSelectedFileName] = useState("");
   const [isSavingAll, setIsSavingAll] = useState(false);
 
-  // Analytics State
-  const [analytics, setAnalytics] = useState({ pageViews: 0, resumeDownloads: 0, projectClicks: 0 });
+  // Private Analytics Dashboard State
+  const [analytics, setAnalytics] = useState({ pageViews: 0, projectClicks: 0, videoViews: 0, blogViews: 0, contactClicks: 0 });
 
   // Form States
   const [editName, setEditName] = useState(data?.profile?.name || "");
@@ -139,7 +169,7 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
   const [modalTech, setModalTech] = useState("");
   const [isSavingEdit, setIsSavingEdit] = useState(false);
 
-  // Load Analytics and record Page View
+  // Fetch Analytics & Register Visitor Page View
   useEffect(() => {
     fetch('/api/analytics')
       .then((res) => res.json())
@@ -310,29 +340,6 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
     } catch (err) { alert(err.message); }
   };
 
-  const openEditModal = (project) => {
-    setEditingProject(project); setModalTitle(project.title); setModalDesc(project.shortDescription); setModalTech(project.tech.join(', '));
-  };
-
-  const handleSaveEdit = async (e) => {
-    e.preventDefault();
-    setIsSavingEdit(true);
-    try {
-      const response = await fetch('/api/edit-project', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'x-admin-token': token
-        },
-        body: JSON.stringify({ id: editingProject.id, updatedProject: { title: modalTitle, shortDescription: modalDesc, tech: modalTech.split(',').map(t => t.trim()) } })
-      });
-      const resData = await response.json();
-      if (!response.ok) throw new Error("Update failed.");
-      setData(prevData => ({ ...prevData, projects: prevData.projects.map(p => p.id === editingProject.id ? { ...p, title: modalTitle, shortDescription: modalDesc, tech: modalTech.split(',').map(t => t.trim()) } : p) }));
-      setEditingProject(null);
-    } catch (err) { alert(err.message); } finally { setIsSavingEdit(false); }
-  };
-
   const toggleNode = (path) => { setExpandedNodes(prev => ({ ...prev, [path]: !prev[path] })); };
 
   const renderTree = (node, currentPath = "") => {
@@ -378,16 +385,52 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
   return (
     <div className="bg-[#0B0F19] text-gray-100 font-sans selection:bg-accentNeon selection:text-darkBg relative overflow-hidden min-h-screen">
       
-      {/* Dynamic Animated QA Cyber Background */}
-      <QABackgroundCanvas />
+      {/* 3D Bold & Vivid Animated QA Background Canvas */}
+      <Vibrant3DBackgroundCanvas />
 
       {/* ================= ADMIN CMS CONTROL FACE ================= */}
       {forceAdminView && (
-        <section className="max-w-4xl mx-auto my-8 p-6 bg-slate-900/90 backdrop-blur-md rounded-xl border border-cyan-500/50 shadow-xl space-y-12 animate-fade-in relative z-20">
+        <section className="max-w-4xl mx-auto my-8 p-6 bg-slate-900/95 backdrop-blur-md rounded-xl border border-cyan-500/50 shadow-2xl space-y-12 animate-fade-in relative z-20">
           
+          {/* PRIVATE ADMIN ANALYTICS TELEMETRY PANEL */}
+          <div className="bg-slate-950 p-6 rounded-2xl border border-cyan-500/40 shadow-inner">
+            <div className="flex items-center justify-between mb-4 border-b border-gray-800 pb-2">
+              <div className="flex items-center gap-2 text-cyan-400">
+                <BarChart3 size={20} />
+                <h2 className="text-sm font-mono font-bold uppercase tracking-wider text-white">Private Recruiter & Interaction Analytics</h2>
+              </div>
+              <span className="text-xxs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Sync Active
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 font-mono">
+              <div className="bg-slate-900 border border-gray-800 p-3 rounded-xl text-center">
+                <span className="text-xxs text-gray-500 block mb-1">PAGE VIEWS</span>
+                <span className="text-xl font-bold text-cyan-400">{analytics.pageViews}</span>
+              </div>
+              <div className="bg-slate-900 border border-gray-800 p-3 rounded-xl text-center">
+                <span className="text-xxs text-gray-500 block mb-1">CODE TREES</span>
+                <span className="text-xl font-bold text-cyan-400">{analytics.projectClicks}</span>
+              </div>
+              <div className="bg-slate-900 border border-gray-800 p-3 rounded-xl text-center">
+                <span className="text-xxs text-gray-500 block mb-1">VIDEO VIEWS</span>
+                <span className="text-xl font-bold text-cyan-400">{analytics.videoViews}</span>
+              </div>
+              <div className="bg-slate-900 border border-gray-800 p-3 rounded-xl text-center">
+                <span className="text-xxs text-gray-500 block mb-1">BLOG READS</span>
+                <span className="text-xl font-bold text-cyan-400">{analytics.blogViews}</span>
+              </div>
+              <div className="bg-slate-900 border border-gray-800 p-3 rounded-xl text-center col-span-2 sm:col-span-1">
+                <span className="text-xxs text-gray-500 block mb-1">CONTACT CLICKS</span>
+                <span className="text-xl font-bold text-cyan-400">{analytics.contactClicks}</span>
+              </div>
+            </div>
+          </div>
+
           {/* Section 1: Profile Modifications */}
           <div>
-            <div className="flex items-center gap-2 mb-4 border-b border-gray-800 pb-2"> <User size={18} className="text-accentNeon" /> <h2 className="text-lg font-bold text-white">Modify Profile Identity & Contact Connect Links</h2> </div>
+            <div className="flex items-center gap-2 mb-4 border-b border-gray-800 pb-2"> <User size={18} className="text-accentNeon" /> <h2 className="text-lg font-bold text-white">Modify Profile Identity & Contact Links</h2> </div>
             <form onSubmit={handleProfileUpdate} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div> <label className="block text-xs font-mono text-gray-400 mb-1">Full Name</label> <input type="text" value={editName} onChange={(e) => setEditName(e.target.value)} className="w-full bg-slate-950 border border-gray-700 rounded-lg p-2 text-white text-sm focus:outline-none focus:border-accentNeon" /> </div>
@@ -509,8 +552,8 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
       <main className="max-w-6xl mx-auto px-6 py-12 space-y-16 relative z-10 animate-fade-in">
         
         {/* Profile Identity Block */}
-        <section className="flex flex-col items-start gap-4 py-12 max-w-4xl bg-gradient-to-br from-slate-900/40 via-slate-900/20 to-transparent p-8 rounded-3xl border border-gray-800/60 backdrop-blur-md relative overflow-hidden group hover:border-gray-700/50 transition-all">
-          <div className="absolute top-0 right-0 w-72 h-72 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20 group-hover:bg-cyan-500/10 transition-colors"></div>
+        <section className="flex flex-col items-start gap-4 py-12 max-w-4xl bg-gradient-to-br from-slate-900/60 via-slate-900/40 to-transparent p-8 rounded-3xl border border-gray-800/80 backdrop-blur-md relative overflow-hidden group hover:border-gray-700/60 transition-all">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20 group-hover:bg-cyan-500/20 transition-colors"></div>
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-950 rounded-full border border-gray-800 text-xs text-cyan-400 font-mono tracking-wide"> 
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span> Status: Open for Technical Opportunities 
           </div>
@@ -520,30 +563,24 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
           
           <div className="flex flex-wrap gap-4 pt-4 w-full border-t border-gray-800/60 mt-4"> 
             {data?.profile?.phone && <a href={`tel:${data.profile.phone}`} onClick={() => trackEvent('contactClick')} className="flex items-center gap-2 bg-slate-950 hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Phone size={14} className="text-cyan-400 group-hover:scale-110 transition-transform"/> Contact Me</a>} 
-            {data?.profile?.linkedin && <a href={data.profile.linkedin} target="_blank" rel="noreferrer" onClick={() => trackEvent('linkedinClick')} className="flex items-center gap-2 bg-slate-950 hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Linkedin size={14} className="text-cyan-400 group-hover:scale-110 transition-transform"/> LinkedIn</a>} 
-            {data?.profile?.github && <a href={data.profile.github} target="_blank" rel="noreferrer" onClick={() => trackEvent('githubClick')} className="flex items-center gap-2 bg-slate-950 hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Github size={14} className="text-cyan-400 group-hover:scale-110 transition-transform"/> GitHub</a>} 
+            {data?.profile?.linkedin && <a href={data.profile.linkedin} target="_blank" rel="noreferrer" onClick={() => trackEvent('contactClick')} className="flex items-center gap-2 bg-slate-950 hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Linkedin size={14} className="text-cyan-400 group-hover:scale-110 transition-transform"/> LinkedIn</a>} 
+            {data?.profile?.github && <a href={data.profile.github} target="_blank" rel="noreferrer" onClick={() => trackEvent('contactClick')} className="flex items-center gap-2 bg-slate-950 hover:bg-gray-800/80 border border-gray-800 px-4 py-2.5 rounded-xl text-xs font-mono font-bold tracking-wider text-gray-300 hover:text-white transition-all group"><Github size={14} className="text-cyan-400 group-hover:scale-110 transition-transform"/> GitHub</a>} 
           </div>
         </section>
 
-        {/* Live Visitor Analytics & Telemetry Strip */}
+        {/* Dynamic Telemetry Performance Strips */}
         <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="bg-slate-900/40 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
-            <div className="flex items-center justify-center gap-1.5 text-xxs font-mono text-cyan-400 tracking-widest block mb-1">
-              <Activity size={12} className="animate-pulse" /> RECRUITER VIEWS
-            </div>
-            <span className="text-2xl font-bold text-white font-mono tracking-tight">{analytics.pageViews}</span>
+          <div className="bg-slate-900/50 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
+            <span className="text-xxs font-mono text-cyan-400 tracking-widest block mb-1">PARALLEL ACCELERATION</span>
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">4.5x Execution Speedup</span>
           </div>
-          <div className="bg-slate-900/40 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
-            <div className="flex items-center justify-center gap-1.5 text-xxs font-mono text-cyan-400 tracking-widest block mb-1">
-              <BarChart3 size={12} /> FRAMEWORK CLICKS
-            </div>
-            <span className="text-2xl font-bold text-white font-mono tracking-tight">{analytics.projectClicks}</span>
+          <div className="bg-slate-900/50 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
+            <span className="text-xxs font-mono text-cyan-400 tracking-widest block mb-1">REGRESSION STAGE RELIABILITY</span>
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">99.4% Stability Gate</span>
           </div>
-          <div className="bg-slate-900/40 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
-            <div className="flex items-center justify-center gap-1.5 text-xxs font-mono text-cyan-400 tracking-widest block mb-1">
-              <CheckCircle size={12} /> STABILITY RATE
-            </div>
-            <span className="text-2xl font-bold text-white font-mono tracking-tight">99.4% Gate</span>
+          <div className="bg-slate-900/50 border border-gray-800 p-6 rounded-2xl text-center backdrop-blur-sm relative group hover:border-gray-700/60 transition-all">
+            <span className="text-xxs font-mono text-cyan-400 tracking-widest block mb-1">E2E TEST CYCLE OPTIMIZATION</span>
+            <span className="text-2xl font-bold text-white font-mono tracking-tight">Zero-Flakiness Layer</span>
           </div>
         </section>
 
@@ -552,7 +589,7 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
           <div className="flex items-center gap-2 border-b border-gray-800 pb-2"> <Layers className="text-cyan-400" size={20} /> <h3 className="text-xs font-mono font-bold tracking-widest text-white uppercase">Technical Skills Matrix & Toolkit</h3> </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {(data?.skills || []).map((skill, index) => (
-              <div key={index} className="bg-slate-900/30 p-5 rounded-xl border border-gray-800/80 hover:border-cyan-400/40 transition-all group relative">
+              <div key={index} className="bg-slate-900/40 p-5 rounded-xl border border-gray-800/80 hover:border-cyan-400/40 transition-all group relative">
                 <span className="text-xxs font-mono px-2 py-0.5 bg-slate-950 rounded border border-gray-800 text-cyan-400/90">{skill.category}</span>
                 <h4 className="text-base font-bold text-white mt-3 group-hover:text-cyan-400 transition-colors">{skill.name}</h4>
                 <p className="text-gray-400 text-xs mt-1 leading-relaxed">{skill.description}</p>
@@ -627,7 +664,7 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
             {activeTab === 'videos' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {(data?.videos || []).map((video, idx) => (
-                  <div key={video.id || idx} className="bg-slate-900/40 border border-gray-800 p-5 rounded-2xl space-y-4 hover:border-gray-700 transition-all group">
+                  <div key={video.id || idx} onClick={() => trackEvent('videoView')} className="bg-slate-900/40 border border-gray-800 p-5 rounded-2xl space-y-4 hover:border-gray-700 transition-all group">
                     <div className="aspect-video w-full rounded-xl overflow-hidden bg-black border border-gray-800/80 shadow-2xl relative">
                       <iframe className="w-full h-full" src={video.url} title={video.title} frameBorder="0" allowFullScreen></iframe>
                     </div>
@@ -645,7 +682,7 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
             {activeTab === 'blogs' && (
               <div className="space-y-4 max-w-4xl mx-auto">
                 {(data?.blogs || []).map((blog, idx) => (
-                  <article key={blog.id || idx} className="bg-slate-900/20 border border-gray-800/60 p-6 rounded-2xl hover:border-gray-700/80 transition-all group">
+                  <article key={blog.id || idx} onClick={() => trackEvent('blogView')} className="bg-slate-900/20 border border-gray-800/60 p-6 rounded-2xl hover:border-gray-700/80 transition-all group cursor-pointer">
                     <div className="flex items-center justify-between text-xxs font-mono text-gray-500 mb-2">
                       <span className="text-cyan-400 font-bold tracking-widest">[{blog.category}]</span>
                       <span>{blog.date}</span>
