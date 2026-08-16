@@ -74,6 +74,11 @@
       "name": "TestNG",
       "category": "Test Runner",
       "description": "Configured parallel multi-browser test executionarchitectures and customized XML reporting templates."
+    },
+    {
+      "name": "Maven",
+      "category": "Build Tools",
+      "description": "Managed dependencies and build lifecycleconfigurations for robust automation frameworks."
     }
   ],
   "experience": [
