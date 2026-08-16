@@ -1,6 +1,6 @@
 // components/PortfolioCMS.js
 import React, { useState, useEffect, useRef } from 'react';
-import { Folder, FileCode, Terminal, Layers, User, Phone, Linkedin, Github, Edit, Eye, ChevronRight, ChevronDown, CheckCircle, RefreshCw, Trash2, X, Briefcase, Plus, Save, Video, BookOpen, BarChart3, Activity, MousePointer, Eye as EyeIcon, Share2 } from 'lucide-react';
+import { Folder, FileCode, Terminal, Layers, User, Phone, Linkedin, Github, Edit, Eye, ChevronRight, ChevronDown, CheckCircle, RefreshCw, Trash2, X, Briefcase, Plus, Save, Video, BookOpen, BarChart3, Activity } from 'lucide-react';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import javaScript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import java from 'react-syntax-highlighter/dist/cjs/languages/prism/java';
@@ -26,44 +26,32 @@ const detectLanguage = (fileName) => {
   return map[ext] || 'text';
 };
 
-// 🎨 Bold & Vibrant 3D Floating QA Background Canvas Component
-const Vibrant3DBackgroundCanvas = () => {
+// 🌌 3D Wireframe Cyber Terrain & Starfield Canvas
+const WireframeTerrainBackground = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    
+
     let animationFrameId;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const qaKeywords = [
-      { text: 'PLAYWRIGHT', color: '#00F0FF', shadow: '#0088FF' },
-      { text: 'SELENIUM', color: '#FF007F', shadow: '#99004C' },
-      { text: 'AI IN TESTING', color: '#39FF14', shadow: '#009900' },
-      { text: 'QA AUTOMATION', color: '#FFD700', shadow: '#CC9900' },
-      { text: 'CUCUMBER BDD', color: '#00FFCC', shadow: '#009999' },
-      { text: 'REST ASSURED', color: '#BF00FF', shadow: '#660099' },
-      { text: 'CI/CD PIPELINE', color: '#FF5722', shadow: '#BF360C' },
-      { text: 'SELF-HEALING', color: '#FF0055', shadow: '#88002D' }
-    ];
+    // Starfield particles
+    const stars = Array.from({ length: 120 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * (height * 0.65),
+      size: Math.random() * 1.5,
+      alpha: Math.random() * 0.8 + 0.2,
+      speed: Math.random() * 0.01 + 0.005
+    }));
 
-    const particles = Array.from({ length: 18 }, () => {
-      const kw = qaKeywords[Math.floor(Math.random() * qaKeywords.length)];
-      return {
-        text: kw.text,
-        color: kw.color,
-        shadow: kw.shadow,
-        x: Math.random() * width,
-        y: Math.random() * height,
-        speedY: 0.3 + Math.random() * 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        scale: 0.8 + Math.random() * 0.6,
-        fontSize: Math.floor(22 + Math.random() * 16)
-      };
-    });
+    // Terrain grid dimensions
+    const cols = 35;
+    const rows = 28;
+    let offset = 0;
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
@@ -74,36 +62,77 @@ const Vibrant3DBackgroundCanvas = () => {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      particles.forEach((p) => {
-        ctx.save();
-        ctx.font = `900 ${Math.floor(p.fontSize * p.scale)}px "Fira Code", "Courier New", monospace`;
-        
-        // 3D Extrusion Shadow Depth Layers
-        const depth = 5;
-        for (let i = depth; i > 0; i--) {
-          ctx.fillStyle = p.shadow;
-          ctx.fillText(p.text, p.x + i, p.y + i);
-        }
+      // 1. Nebula Glow
+      const nebulaGlow = ctx.createRadialGradient(
+        width * 0.3, height * 0.35, 10,
+        width * 0.5, height * 0.4, width * 0.6
+      );
+      nebulaGlow.addColorStop(0, 'rgba(0, 180, 216, 0.25)');
+      nebulaGlow.addColorStop(0.5, 'rgba(10, 70, 95, 0.12)');
+      nebulaGlow.addColorStop(1, 'rgba(11, 15, 25, 0)');
+      ctx.fillStyle = nebulaGlow;
+      ctx.fillRect(0, 0, width, height);
 
-        // Foreground Bright Face Text
-        ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 15;
-        ctx.fillText(p.text, p.x, p.y);
-        ctx.restore();
-
-        p.y -= p.speedY;
-        p.x += p.speedX;
-
-        if (p.y < -50) {
-          p.y = height + 50;
-          p.x = Math.random() * width;
-        }
-        if (p.x < -100 || p.x > width + 100) {
-          p.x = Math.random() * width;
-        }
+      // 2. Stars
+      stars.forEach((star) => {
+        star.alpha += Math.sin(Date.now() * star.speed) * 0.01;
+        ctx.fillStyle = `rgba(200, 245, 255, ${Math.max(0.1, Math.min(1, star.alpha))})`;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
       });
 
+      // 3. Render 3D Wireframe Terrain Grid
+      offset += 0.015;
+      const gridPoints = [];
+
+      for (let r = 0; r < rows; r++) {
+        gridPoints[r] = [];
+        for (let c = 0; c < cols; c++) {
+          const normX = (c / (cols - 1)) - 0.5;
+          const normY = r / (rows - 1);
+          
+          const perspective = 0.2 + normY * 0.85;
+          const x = width / 2 + (normX * width * 1.6) * perspective;
+          const baseY = height * 0.35 + (normY * height * 0.65);
+          
+          const wave = Math.sin(c * 0.4 + r * 0.3 - offset) * 28 + Math.cos(c * 0.2 - offset) * 20;
+          const heightElevation = wave * perspective * (c > 18 ? 1.4 : 0.8);
+          
+          gridPoints[r][c] = { x, y: baseY - heightElevation, alpha: Math.pow(normY, 1.2) };
+        }
+      }
+
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = '#00f0ff';
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const pt = gridPoints[r][c];
+
+          if (c < cols - 1) {
+            const nextPt = gridPoints[r][c + 1];
+            ctx.strokeStyle = `rgba(0, 240, 255, ${pt.alpha * 0.45})`;
+            ctx.lineWidth = Math.max(0.5, pt.alpha * 1.5);
+            ctx.beginPath();
+            ctx.moveTo(pt.x, pt.y);
+            ctx.lineTo(nextPt.x, nextPt.y);
+            ctx.stroke();
+          }
+
+          if (r < rows - 1) {
+            const downPt = gridPoints[r + 1][c];
+            ctx.strokeStyle = `rgba(0, 200, 240, ${pt.alpha * 0.4})`;
+            ctx.lineWidth = Math.max(0.5, pt.alpha * 1.5);
+            ctx.beginPath();
+            ctx.moveTo(pt.x, pt.y);
+            ctx.lineTo(downPt.x, downPt.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      ctx.shadowBlur = 0;
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -115,7 +144,7 @@ const Vibrant3DBackgroundCanvas = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0 opacity-40" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" />;
 };
 
 export default function PortfolioCMS({ initialData, token, forceAdminView }) {
@@ -127,7 +156,7 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
   const [selectedFileName, setSelectedFileName] = useState("");
   const [isSavingAll, setIsSavingAll] = useState(false);
 
-  // Private Analytics Dashboard State
+  // Analytics State
   const [analytics, setAnalytics] = useState({ pageViews: 0, projectClicks: 0, videoViews: 0, blogViews: 0, contactClicks: 0 });
 
   // Form States
@@ -167,9 +196,7 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
   const [modalTitle, setModalTitle] = useState("");
   const [modalDesc, setModalDesc] = useState("");
   const [modalTech, setModalTech] = useState("");
-  const [isSavingEdit, setIsSavingEdit] = useState(false);
 
-  // Fetch Analytics & Register Visitor Page View
   useEffect(() => {
     fetch('/api/analytics')
       .then((res) => res.json())
@@ -385,8 +412,8 @@ export default function PortfolioCMS({ initialData, token, forceAdminView }) {
   return (
     <div className="bg-[#0B0F19] text-gray-100 font-sans selection:bg-accentNeon selection:text-darkBg relative overflow-hidden min-h-screen">
       
-      {/* 3D Bold & Vivid Animated QA Background Canvas */}
-      <Vibrant3DBackgroundCanvas />
+      {/* 🌌 3D Cyber Terrain Canvas */}
+      <WireframeTerrainBackground />
 
       {/* ================= ADMIN CMS CONTROL FACE ================= */}
       {forceAdminView && (
