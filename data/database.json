@@ -44,7 +44,13 @@
       "content": "An in-depth exploration of structural semantic analysis layers. Why modern automation engineers are ditching brittle XPath elements in favor of relative DOM geometric proximity markers and self-healing runtime trees.\n\n### The Problem with XPaths\nBrittle selectors are the bane of QA automation. Whenever the html layout or DOM tree updates under normal frontend code iterations, paths break causing downstream test flakiness.\n\n### Modern Solutions\n1. **Geometric Proximity Markers**: Targeting locators based on layout position.\n2. **Self-Healing Runtime Trees**: Dynamic fallback selectors when static ones fail.\n3. **AI-Driven Visual Analysis**: Locating elements using image models rather than code nodes.\n\nUsing modern framework wrappers like Playwright, we can target locator elements semantically rather than structurally."
     }
   ],
-  "skills": [],
+  "skills": [
+    {
+      "name": "Selenium WebDriver",
+      "category": "UI Automation",
+      "description": "Developed scalable Java-based POM hybridframeworks, reducing manual regression efforts by 40%."
+    }
+  ],
   "experience": [
     {
       "id": "exp-1",
