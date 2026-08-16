@@ -2,11 +2,10 @@
   "profile": {
     "name": "Salman Raza",
     "role": "Software Testing & QA Automation Engineer",
-    "bio": "Specializing in designing robust, scalable automation frameworks and ensuring enterprise system reliability across web, mobile, and API layers.",
+    "bio": "Software QA & Automation Engineer with 4 years of hands-on experience designing scalable UI and API test frameworks using Core Java, Selenium WebDriver, Playwright, and REST Assured. Skilled in manual functional testing, SQL data validation, Jenkins CI/CD integration, and leveraging AI tools to accelerate regression testing and software delivery.",
     "phone": "+91 9773782031",
     "linkedin": "https://www.linkedin.com/in/-salmanraza/",
-    "github": "https://github.com/salmanraza9773",
-    "resumeUrl": ""
+    "github": "https://github.com/salmanraza9773"
   },
   "metrics": [
     {
