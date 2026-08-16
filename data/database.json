@@ -98,13 +98,6 @@
   ],
   "experience": [
     {
-      "id": "exp-1",
-      "role": "Senior QA Automation Engineer",
-      "company": "Tech Enterprise Corp",
-      "duration": "2024 - Present",
-      "description": "Led a team of 4 engineers to scale cross-browser test automation coverage from 40% to 92% utilizing Playwright.\nBuilt and optimized overnight CI/CD pipeline triggers within Jenkins."
-    },
-    {
       "id": "exp-1784209660210",
       "role": "software test engineer",
       "company": "Telus Digital",
