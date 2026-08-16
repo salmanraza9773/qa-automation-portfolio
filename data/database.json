@@ -49,6 +49,11 @@
       "name": "Selenium WebDriver",
       "category": "UI Automation",
       "description": "Developed scalable Java-based POM hybridframeworks, reducing manual regression efforts by 40%."
+    },
+    {
+      "name": "Playwright",
+      "category": "UI Automation",
+      "description": "Built high-speed, auto-waiting end-to-end webregression checks with trace viewing capabilities."
     }
   ],
   "experience": [
