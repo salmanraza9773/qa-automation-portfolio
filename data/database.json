@@ -54,6 +54,11 @@
       "name": "Playwright",
       "category": "UI Automation",
       "description": "Built high-speed, auto-waiting end-to-end webregression checks with trace viewing capabilities."
+    },
+    {
+      "name": "Cucumber BDD",
+      "category": "UI Automation",
+      "description": "Authored business-readable, Gherkin-drivenfeature files to bridge communications between QA and product."
     }
   ],
   "experience": [
