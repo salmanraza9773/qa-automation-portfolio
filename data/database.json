@@ -110,6 +110,13 @@
       "company": "Telus Digital",
       "duration": "2022 - July 2026",
       "description": "Hi testing"
+    },
+    {
+      "id": "exp-1786904483203",
+      "role": "Software Test Engineer",
+      "company": "Telus Digital",
+      "duration": "July 2022 – July 2026",
+      "description": "Designed, executed, and maintained automated test scripts using Java, Selenium WebDriver, TestNG, and Page Object Model (POM) design patterns.\n\nValidated REST APIs using Postman and REST Assured, verifying JSON payload structures, HTTP status codes, and authentication methods.\n\nDeveloped and executed complex SQL queries to perform backend data validation and verification across application environments.\n\nIntegrated regression and smoke automation suites into Jenkins CI/CD pipelines to ensure continuous test validation upon deployment.\n\nAuthored detailed test scenarios, test cases, and bug reports in JIRA, managing defects through complete root-cause resolution in an Agile environment."
     }
   ],
   "projects": [
