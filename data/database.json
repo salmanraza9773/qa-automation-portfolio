@@ -46,11 +46,6 @@
   ],
   "skills": [
     {
-      "name": "Selenium WebDriver",
-      "category": "UI Automation",
-      "description": "Designed custom cross-browser, thread-safe execution engines with explicit wait wrappers."
-    },
-    {
       "name": "Playwright",
       "category": "UI Automation",
       "description": "Built parallel testing framework"
