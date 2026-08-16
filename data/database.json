@@ -64,6 +64,11 @@
       "name": "Postman",
       "category": "API Testing",
       "description": "Scripted reusable assertion collections toinstantly validate REST API payloads and response schemas."
+    },
+    {
+      "name": "REST Assured",
+      "category": "API Testing",
+      "description": "Programmed clean, BDD-styled Java libraries tohandle automated backend validation pipelines."
     }
   ],
   "experience": [
