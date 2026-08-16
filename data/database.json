@@ -59,6 +59,11 @@
       "name": "Cucumber BDD",
       "category": "UI Automation",
       "description": "Authored business-readable, Gherkin-drivenfeature files to bridge communications between QA and product."
+    },
+    {
+      "name": "Postman",
+      "category": "API Testing",
+      "description": "Scripted reusable assertion collections toinstantly validate REST API payloads and response schemas."
     }
   ],
   "experience": [
