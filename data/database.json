@@ -79,6 +79,11 @@
       "name": "Maven",
       "category": "Build Tools",
       "description": "Managed dependencies and build lifecycleconfigurations for robust automation frameworks."
+    },
+    {
+      "name": "Jenkins",
+      "category": "DevOps",
+      "description": "Streamlined automated suites into regressionpipelines, saving 15+ engineering hours per release."
     }
   ],
   "experience": [
