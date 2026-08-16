@@ -69,6 +69,11 @@
       "name": "REST Assured",
       "category": "API Testing",
       "description": "Programmed clean, BDD-styled Java libraries tohandle automated backend validation pipelines."
+    },
+    {
+      "name": "TestNG",
+      "category": "Test Runner",
+      "description": "Configured parallel multi-browser test executionarchitectures and customized XML reporting templates."
     }
   ],
   "experience": [
