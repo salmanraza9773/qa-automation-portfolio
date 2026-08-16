@@ -84,6 +84,11 @@
       "name": "Jenkins",
       "category": "DevOps",
       "description": "Streamlined automated suites into regressionpipelines, saving 15+ engineering hours per release."
+    },
+    {
+      "name": "Git & GitHub",
+      "category": "DevOps",
+      "description": "Maintained clean branching strategies, codereview processes, and version control hygiene."
     }
   ],
   "experience": [
