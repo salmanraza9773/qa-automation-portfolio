@@ -89,6 +89,11 @@
       "name": "Git & GitHub",
       "category": "DevOps",
       "description": "Maintained clean branching strategies, codereview processes, and version control hygiene."
+    },
+    {
+      "name": "JIRA",
+      "category": "DevOps",
+      "description": "Tracked defect lifecycles systematically,ensuring thorough reproduction steps and log contexts."
     }
   ],
   "experience": [
